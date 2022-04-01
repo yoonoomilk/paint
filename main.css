@@ -1,0 +1,68 @@
+@import "reset.css";
+
+* {
+  position: fixed;
+}
+
+.canvas {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+#menu, img {
+  top: 1vh;
+  left: 1vh;
+  width: 50px;
+  height: 50px;
+}
+
+#menu>*:hover+* {
+  display: block;
+}
+
+.controls {
+  top: 50px;
+  width: 50px;
+  height: calc(98vh-50px);
+  align-items: center;
+  display: none;
+  background-color: rgb(240, 240, 240);
+}
+
+.controls:hover {
+  display: block;
+}
+
+.controls * {
+  z-index: 2;
+  position: relative;
+}
+
+.controls_btns button {
+  all: unset;
+  cursor: pointer;
+  background-color: white;
+  padding: 5px 0px;
+  width: 80px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.068);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.controls_btns button:active {
+  transform: scale(0.98);
+}
+
+.controls_colors .controls_color {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.068);
+}
