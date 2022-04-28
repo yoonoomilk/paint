@@ -1,9 +1,10 @@
-const canvas = document.getElementById("Canvas");
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("Color");
 const range = document.getElementById("Range");
 const mode = document.getElementById("Mode");
 const saveBtn = document.getElementById("Save");
+const uploadedFile = document.getElementById("upload");
 
 const INITIAL_COLOR = "#000000";
 setInterval(function() {
@@ -19,15 +20,11 @@ ctx.strokeStyle = "#2c2c2c";
 canvas.width = CANVAS_ROW;
 canvas.height = CANVAS_COL;
 
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, CANVAS_ROW, CANVAS_COL);
-
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
 
 let painting = false;
-let filling = false;
 
 function stopPainting() {
   painting = false;
@@ -61,13 +58,7 @@ function handleRangeChange(event) {
 }
 
 function handleModeClick() {
- if (filling) {
-   filling = false;
-   mode.innerText = "Fill";
- } else {
-  filling = true;
-  mode.innerText = "Paint";
- }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function handleSaveClick() {
@@ -78,19 +69,11 @@ function handleSaveClick() {
   link.click();
 }
 
-function handleCanvasClick() {
-  if (filling) {
-    ctx.fillRect(0, 0, CANVAS_ROW, CANVAS_COL);
-  }
-  filling = false;
-  mode.innerText = "Fill";
-}
-
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
-  canvas.addEventListener("click", handleCanvasClick);
+  canvas.addEventListener("mouseleave", stopPainting);
 }
 
 Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
@@ -107,3 +90,11 @@ if (mode) {
 if (saveBtn) {
   saveBtn.addEventListener("click", handleSaveClick);
 }
+
+function handleFiles() {
+  let selectedFile = document.getElementById("upload").files[0];
+  const file = URL.createObjectURL(selectedFile);
+  document.getElementById("background").src = file;
+}
+
+uploadedFile.addEventListener("change", handleFiles);

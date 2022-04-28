@@ -10,15 +10,16 @@
 </head>
 
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-  <canvas id="Canvas" class="canvas"></canvas>
+  <img src="" id="background">
+  <canvas id="canvas"></canvas>
   <div id="menu">
-    <img src="menu.png" alt="">
+    <iframe src="menu.svg" id="menu_button"></iframe>
     <div class="controls">
       <div class="controls_range">
         <input type="range" id="Range" min="0.1" max="5.0" value="2.5" step="0.1">
       </div>
       <div class="controls_btns">
-        <button id="Mode">Fill</button>
+        <button id="Mode">Clear</button>
         <button id="Save">Save</button>
       </div>
       <div class="controls_colors" id="Colors">
@@ -34,6 +35,7 @@
       </div>
     </div>
   </div>
+  <input type="file" id="upload" accept="image/*">
   <script src="main.js"></script>
 </body>
 

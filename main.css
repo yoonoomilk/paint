@@ -4,13 +4,25 @@
   position: fixed;
 }
 
-.canvas {
+#canvas {
+  z-index: 3;
   width: 100vw;
   height: 100vh;
-  background-color: white;
 }
 
-#menu, img {
+#background {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+img.opac {
+  opacity: 0.1;
+  filter: alpha(opacity=10); /* IE8 및 그 이하 버전용 */
+}
+
+#menu, iframe#menu_button {
+  z-index: 5;
   top: 1vh;
   left: 1vh;
   width: 50px;
@@ -19,6 +31,12 @@
 
 #menu>*:hover+* {
   display: block;
+}
+
+#upload {
+  top: 1vh;
+  right: 1vh;
+  z-index: 4;
 }
 
 .controls {
@@ -35,7 +53,7 @@
 }
 
 .controls * {
-  z-index: 2;
+  z-index: 5;
   position: relative;
 }
 
