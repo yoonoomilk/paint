@@ -1,3 +1,5 @@
+if(filter.indexOf( navigator.platform.toLowerCase() ) < 0!) alert("모바일은 지원하지 않습니다.");
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("Color");
@@ -7,10 +9,10 @@ const saveBtn = document.getElementById("Save");
 const uploadedFile = document.getElementById("upload");
 
 const INITIAL_COLOR = "#000000";
-setInterval(function() {
-  CANVAS_ROW = window.innerWidth;
-  CANVAS_COL = window.innerHeight;
-})
+window.onresize = function() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
 
 var CANVAS_ROW = window.innerWidth;
 var CANVAS_COL = window.innerHeight;
@@ -92,9 +94,19 @@ if (saveBtn) {
 }
 
 function handleFiles() {
-  let selectedFile = document.getElementById("upload").files[0];
-  const file = URL.createObjectURL(selectedFile);
-  document.getElementById("background").src = file;
+  const selectedFile = document.getElementById("upload").files[0];
+  const background = document.getElementById("background");
+  var file = URL.createObjectURL(selectedFile);
+  var img = new Image();
+  img.src = file
+  img.onload = function() {
+    var file_ratio = img.width/img.height;
+    var window_ratio = window.innerWidth/window.innerHeight;
+    clearInterval(a);
+    var a = setInterval(function() {
+      background.style.width = "calc(100vh*" + file_ratio + ")";
+      background.style.height = "100vh";
+      background.src = file;
+    });
+  };
 }
-
-uploadedFile.addEventListener("change", handleFiles);
