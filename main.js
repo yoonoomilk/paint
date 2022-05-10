@@ -1,4 +1,4 @@
-if(filter.indexOf( navigator.platform.toLowerCase() ) < 0!) alert("모바일은 지원하지 않습니다.");
+if(/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)) alert("모바일은 지원하지 않습니다.");
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -98,7 +98,7 @@ function handleFiles() {
   const background = document.getElementById("background");
   var file = URL.createObjectURL(selectedFile);
   var img = new Image();
-  img.src = file
+  img.src = file;
   img.onload = function() {
     var file_ratio = img.width/img.height;
     var window_ratio = window.innerWidth/window.innerHeight;
