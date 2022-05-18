@@ -1,5 +1,9 @@
 @import "reset.css";
 
+body {
+  background-color: white;
+}
+
 * {
   position: fixed;
 }
