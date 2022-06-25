@@ -1,4 +1,4 @@
-if(self === top) if(/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)) alert("모바일은 지원하지 않습니다.");
+if(window.location == window.parent.location) if(/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)) alert("모바일은 지원하지 않습니다.");
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
